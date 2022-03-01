@@ -1,0 +1,30 @@
+table{
+    width: 100%;
+}
+thead{
+    font-size: 10pt;
+}
+tbody td,tbody th{
+    /* border: 1pt solid black; */
+    padding: 1px;
+    /* width: 50%; */
+}
+/* tbody th{
+    width: 60%;
+}
+tbody td{
+    width: 40%;
+} */
+#content{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    font-size:12px;
+}
+#contenu{
+    width: 530px;
+}
+#contenu table{
+    border-color: black;
+}
+

@@ -1,0 +1,64 @@
+
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #hadi{
+           
+            background-image:url(https://www.challenges.fr/assets/img/2015/03/26/cover-r4x3w1000-57911e6ec6aed-lunettes-chez-un-opticien.jpg); 
+            background-attachment: fixed;
+            background-size: cover;
+            
+        }
+         h1{
+            font-size: 40px;
+            color:rgba(225, 221, 235, 0.842);
+            /* color:white; */
+            /* margin-top:30px; */
+            /* margin-bottom: 30px; */
+            margin-right: auto;
+
+        } 
+
+        .label{
+            font-size: 19px;
+            /* margin-top: 20px; */
+            color:white;
+            font-weight: normal;
+            margin-top:10px;
+            margin-bottom:auto;
+            padding-bottom: auto;
+
+        }
+
+        .form-control{
+            /* background: rgba(255, 255, 255,0.2); */
+            background: white;
+            border: 1px solid black;
+            border-radius: 10px;
+
+            /* border-bottom: 2px solid black; */
+            font-size: 21px;
+            color:black;
+            margin-top:20px;
+            height: 40px;
+        }
+
+        #input {
+
+            border-bottom: 2px solid black;
+            background: white;
+        }
+
+        .btn-info{
+            margin-top:30px;
+            /* margin-left:160px; */
+            width: 180px;
+            font-size: 19px;
+            border-radius: 1000px;
+        }
+        .col-md-6{
+            background: rgba(0,0,0,0.4);
+            height: 800px;
+            box-shadow: -1px 1px 60px 10px black inset;
+        }

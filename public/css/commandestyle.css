@@ -1,0 +1,88 @@
+.card{
+    font-weight: bold;
+}
+table{
+    width: 100%;
+}
+
+/* ******************************************* */
+/* .headerVision { 
+    height: 15px;
+    font-size:8px;
+} */
+.headerVision tr { 
+    border-right:1pt dashed black;
+    border-left:1pt dashed black;
+}
+.headerVision tr:first-child{ 
+    border-top:1pt dashed black;
+}
+.headerVision tr:last-child{ 
+    border-bottom:1pt dashed black;
+}
+/* *************************************** */
+.headerFacture { 
+    /* font-size:8px ; */
+    /* font-size:23px; */
+    height: 15px;
+    font-size:8px;
+    /* background-color: yellow; */
+}
+.headerFacture th { 
+    border-top:1pt dashed black;
+    border-bottom:1pt dashed black;
+    border-left:1pt dashed black;
+}
+.headerFacture th:nth-last-child(1) { 
+    border-right:1pt dashed black;
+}
+.bodyFacture td { 
+    vertical-align: top;
+    padding-right: 2px;
+    padding-left: 2px;
+    border-left:1pt dashed black;
+}
+.bodyFacture td:nth-last-child(1){
+    border-right:1pt dashed black;
+}
+.tbody_ligne td{
+    border-left:1pt dashed black;
+    border-bottom:1pt dashed black;
+}
+.tbody_ligne td:nth-last-child(1){
+    border-right:1pt dashed black;
+}
+.htFacture th,.tvaFacture th,.ttcFacture th{
+    padding: 3px;
+    border-bottom : 1pt dashed black;
+    border-left : 1pt dashed black;
+}
+.htFacture th:nth-last-child(1),.tvaFacture th:nth-last-child(1),.ttcFacture th:nth-last-child(1){
+    border-right : 1pt dashed black;
+}
+#content{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    /* font-size:12px; */
+    font-size:8px;
+}
+#contenu{
+    /* width: 530px; */
+    width: 200px;
+}
+#contenu table{
+    border-color: black;
+}
+
+/* @media print {
+    .photo-gris img {
+        filter: grayscale(1);
+        -webkit-filter: grayscale(1);
+    }
+} */
+/* .photo-gris img:hover {
+filter: grayscale(0);
+-webkit-filter: grayscale(0);
+} */
+
