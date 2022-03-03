@@ -294,6 +294,32 @@
   });
 </script>
 @endif
+@if(session()->has('success'))
+<script>
+  // Swal.fire("{{ session('status')}}")
+  Swal.fire({
+      title: '',
+      text: "{{ session('success')}}",
+      icon: 'success',
+      showCancelButton: false,
+      showConfirmButton : true,
+      confirmButtonColor: '#007BFF',
+  });
+</script>
+@endif
+@if(session()->has('error'))
+<script>
+  // Swal.fire("{{ session('status')}}")
+  Swal.fire({
+      title: '',
+      text: "{{ session('error')}}",
+      icon: 'error',
+      showCancelButton: false,
+      showConfirmButton : true,
+      confirmButtonColor: '#007BFF',
+  });
+</script>
+@endif
 {{-- ################################## --}}
 <!-- ./wrapper --> 
 

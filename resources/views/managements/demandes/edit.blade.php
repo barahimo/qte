@@ -106,6 +106,7 @@
           </div>
         </div>
         <br>
+        <button class='btn btn-success' id="test" onclick="onTest()">&nbsp;TEST&nbsp;</button>
         <button class='btn btn-success' id="addLigne"><i class="fas fa-plus-circle"></i>&nbsp;Ligne&nbsp;<i class="fas fa-arrow-down"></i></button>
         &nbsp;&nbsp;&nbsp;&nbsp;
         <button class='btn btn-warning text-white' id="updateLigne"><i class="fas fa-retweet"></i>&nbsp;à jour&nbsp;<i class="fas fa-arrow-down"></i></button>
@@ -269,7 +270,11 @@
           if(Object.keys(data).length>0) {     
             ligne_id.val(checkLigne(data.id).ligne_id);
             ligne_qte.val(checkLigne(data.id).ligne_qte);
-            stock_qte.val(data.quantite);
+            // stock_qte.val(data.quantite);
+            // checkLigne(data.id).stock_qte == 0;
+            stock_qte.val(checkLigne(data.id).stock_qte);
+            if(checkLigne(data.id).stock_qte == -1)
+              stock_qte.val(data.quantite);
 
             prod_id.val(data.id);
             libelle.val(data.code_produit+' | '+data.nom_produit.substring(0,15)+'...');   
@@ -278,7 +283,10 @@
             total.val(parseFloat(data.prix_TTC).toFixed(2)); 
             qte.val("1");
 
-            stock = parseFloat(data.quantite);
+            // stock = parseFloat(data.quantite);
+            stock = parseFloat(checkLigne(data.id).stock_qte);
+            if(checkLigne(data.id).stock_qte == -1)
+              stock = parseFloat(data.quantite);
             p = parseFloat(ligne_qte.val());
             r = p - nqte;
             stockFinal = parseFloat(stock) - parseFloat(r);
@@ -349,9 +357,9 @@
           <td>${parseFloat(prix.val()).toFixed(2)}</td>
           <td>${qte.val()}</td>
           <td>${parseFloat(total.val()).toFixed(2)}</td>
-          <td style="display : none;">${ligne_id.val()}</td>
-          <td style="display : none;">${ligne_qte.val()}</td>
-          <td style="display : none;">${stock_qte.val()}</td>
+          <td style="display : none;">${parseFloat(ligne_id.val()).toFixed(2)}</td>
+          <td style="display : none;">${parseFloat(ligne_qte.val()).toFixed(2)}</td>
+          <td style="display : none;">${parseFloat(stock_qte.val()).toFixed(2)}</td>
           <td>
             <button class="btn btn-outline-success btn-sm" onclick="edit(${prod_id.val()})"><i class="fas fa-edit"></i></button>
             &nbsp;&nbsp;&nbsp;
@@ -587,7 +595,17 @@
     });
     // -----------End valider--------------//
   });
+  function onTest(){
+    console.log(listItemsDeleted.length)
+    if(listItemsDeleted.length>0){
+      listItemsDeleted.forEach(item => {
+        console.log(item);
+      })
+    }
+    // console.log(listItemsDeleted);
+  }
   // -----------My function--------------//
+  var listItemsDeleted = [];
   function remove(id){
     var i = checkIndex(id);
     var table=$('#lignes');
@@ -604,6 +622,11 @@
     var vLigne_id = td.eq(5).html();
     var vLigne_qte = td.eq(6).html();
     var vStock_qte = td.eq(7).html();
+    // ################################# //
+    var ligne_id=$('#ligne_id');
+    var ligne_qte=$('#ligne_qte');
+    var stock_qte=$('#stock_qte');
+    var badge_qte=$('#badge_qte');
     // ################################# //
     p = parseFloat(vLigne_qte);
     nqte = 0;
@@ -622,6 +645,20 @@
     qte.val(1);
     total.val(td.eq(2).html());
     badge_qte.html(vStock_qte);
+    // ################################# //
+    if(parseFloat(vLigne_id) != 0){
+      badge_qte.html(stock-p);
+      ligne_id.val(0);
+      ligne_qte.val(0);
+      stock_qte.val(stock - p);
+    }
+    // ################################# //
+    listItemsDeleted.push({
+      'ligne_id':parseFloat(vLigne_id),
+      'prod_id':id,
+      'ligne_qte':parseFloat(vLigne_qte),
+      'stock_qte':parseFloat(vStock_qte)
+    });
     // ################################# //
     list.eq(i).remove();
     var somme=$('#somme');
@@ -682,6 +719,8 @@
     // ##################################### //
     badge_qte.html(parseFloat(stockFinal));
     // badge_qte.html(stock + nqte);
+    // if(parseFloat(vLigne_id) != 0)
+      // badge_qte.html(stock);
     // ################################### //
   }
   function check(id){
@@ -700,6 +739,7 @@
   function checkLigne(id){
     vLigne_id = 0;
     vLigne_qte = 0;
+    vStock_qte = -1;
     var existe = false;
     var table=$('#lignes');
     var list = table.find('tbody').find('tr'); 
@@ -711,7 +751,19 @@
         break;
       }
     }
-    var obj = {'ligne_id':vLigne_id,'ligne_qte':vLigne_qte};
+    /**************************************/
+    if(listItemsDeleted.length>0){
+      for (let i = 0; i < listItemsDeleted.length; i++) {
+        if(listItemsDeleted[i].prod_id == id){
+          vLigne_id = listItemsDeleted[i].ligne_id;
+          vLigne_qte = 0;
+          vStock_qte = listItemsDeleted[i].stock_qte - listItemsDeleted[i].ligne_qte;
+          break;
+        }
+      }
+    }
+    /**************************************/
+    var obj = {'ligne_id':vLigne_id,'ligne_qte':vLigne_qte,'stock_qte':vStock_qte};
     return obj;
   }
   function checkIndex(id){

@@ -233,3 +233,26 @@ Route::get('/productsCategoryBalance','BalanceController@productsCategoryBalance
 ## ## ##
 Route::get('/mouvement', 'BalanceController@mouvement')->name('balance.mouvement');
 Route::get('/inventaire','BalanceController@inventaire')->name('balance.inventaire');
+
+
+/*
+|--------------------------------------------------------------------------
+| Web -- Import | Export --
+|--------------------------------------------------------------------------
+*/
+Route::get('/import',function(){
+    return "test";
+});
+/*
+|--------------------------------------------------------------------------
+| Route File
+|--------------------------------------------------------------------------
+*/
+/*/ ***************** /*/
+Route::get('files/studentExcel', 'FileController@studentExcel')->name('files.studentExcel');
+Route::post('files/studentImport', 'FileController@studentImport')->name('files.studentImport');
+Route::get('files/studentExport', 'FileController@studentExport')->name('files.studentExport');
+/*/ ***************** /*/
+Route::get('files/clientExcel', 'FileController@clientExcel')->name('files.clientExcel');
+Route::post('files/clientImport', 'FileController@clientImport')->name('files.clientImport');
+Route::get('files/clientExport', 'FileController@clientExport')->name('files.clientExport');

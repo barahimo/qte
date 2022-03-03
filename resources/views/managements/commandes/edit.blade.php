@@ -248,10 +248,10 @@
   <div class="card text-left">
     <div class="card-body">
       <h5 class="card-title">Les informations de produit :</h5>
-      <input type="text" name="ligne_id" id="ligne_id" value="" disabled>
-      <input type="text" name="prod_id" id="prod_id" value="" disabled>
-      <input type="text" name="ligne_qte" id="ligne_qte" value="" disabled>
-      <input type="text" name="stock_qte" id="stock_qte" value="" disabled>
+      <input type="hidden" name="ligne_id" id="ligne_id" value="" disabled>
+      <input type="hidden" name="prod_id" id="prod_id" value="" disabled>
+      <input type="hidden" name="ligne_qte" id="ligne_qte" value="" disabled>
+      <input type="hidden" name="stock_qte" id="stock_qte" value="" disabled>
       <div class="card-text">
         <div class="form-row">
           <div class="col-3">
@@ -439,9 +439,9 @@
             ligne_id.val(checkLigne(data.id).ligne_id);
             ligne_qte.val(checkLigne(data.id).ligne_qte);
             // console.log(data.id);
-            checkLigne(data.id).stock_qte == 0;
+            // checkLigne(data.id).stock_qte == 0;
             stock_qte.val(checkLigne(data.id).stock_qte);
-            if(checkLigne(data.id).stock_qte == 0)
+            if(checkLigne(data.id).stock_qte == -1)
               stock_qte.val(data.quantite);
 
 
@@ -456,7 +456,7 @@
             
             // stock = parseFloat(data.quantite);
             stock = parseFloat(checkLigne(data.id).stock_qte);
-            if(checkLigne(data.id).stock_qte == 0)
+            if(checkLigne(data.id).stock_qte == -1)
               stock = parseFloat(data.quantite);
             p = parseFloat(ligne_qte.val());
             // r = p - nqte;
@@ -559,9 +559,9 @@
                     <td>${parseFloat(prix.val()).toFixed(2)}</td>
                     <td>${qte.val()}</td>
                     <td>${parseFloat(total.val()).toFixed(2)}</td>
-                    <td style="display : content;">${parseFloat(ligne_id.val()).toFixed(2)}</td>
-                    <td style="display : content;">${parseFloat(ligne_qte.val()).toFixed(2)}</td>
-                    <td style="display : content;">${parseFloat(stock_qte.val()).toFixed(2)}</td>
+                    <td style="display : none;">${parseFloat(ligne_id.val()).toFixed(2)}</td>
+                    <td style="display : none;">${parseFloat(ligne_qte.val()).toFixed(2)}</td>
+                    <td style="display : none;">${parseFloat(stock_qte.val()).toFixed(2)}</td>
                     <td>
                       <button class="btn btn-outline-success btn-sm" onclick="edit(${prod_id.val()})"><i class="fas fa-edit"></i></button>
                       &nbsp;&nbsp;&nbsp;
@@ -913,6 +913,7 @@
     qte.val(1);
     total.val(td.eq(2).html());
     badge_qte.html(vStock_qte);
+    // ################################# //
     if(parseFloat(vLigne_id) != 0){
       badge_qte.html(stock+p);
       ligne_id.val(0);
@@ -926,6 +927,7 @@
       'ligne_qte':parseFloat(vLigne_qte),
       'stock_qte':parseFloat(vStock_qte)
     });
+    // ################################# //
     list.eq(i).remove();
     var somme=$('#somme');
     somme.html(calculSomme());
@@ -985,10 +987,10 @@
       return;
     }
     // ##################################### //
-    // badge_qte.html(parseFloat(stockFinal));
-    badge_qte.html(stock - nqte);
-    if(parseFloat(vLigne_id) != 0)
-      badge_qte.html(stock);
+    badge_qte.html(parseFloat(stockFinal));
+    // badge_qte.html(stock - nqte);
+    // if(parseFloat(vLigne_id) != 0)
+      // badge_qte.html(stock);
     // ################################### //
   }
   function check(id){
@@ -1007,7 +1009,7 @@
   function checkLigne(id){
     vLigne_id = 0;
     vLigne_qte = 0;
-    vStock_qte = 0;
+    vStock_qte = -1;
     var existe = false;
     var table=$('#lignes');
     var list = table.find('tbody').find('tr'); 
@@ -1120,9 +1122,9 @@
                     <td>${parseFloat(ligne.prix).toFixed(2)}</td>
                     <td>${ligne.quantite}</td>
                     <td>${parseFloat(ligne.total_produit).toFixed(2)}</td>
-                    <td style="display : content;">${ligne.id}</td>
-                    <td style="display : content;">${ligne.quantite}</td>
-                    <td style="display : content;">${ligne.produit.quantite}</td>
+                    <td style="display : none;">${ligne.id}</td>
+                    <td style="display : none;">${ligne.quantite}</td>
+                    <td style="display : none;">${ligne.produit.quantite}</td>
                     <td>
                       <button class="btn btn-outline-success btn-sm" onclick="edit(${ligne.produit_id})"><i class="fas fa-edit"></i></button>
                       &nbsp;&nbsp;&nbsp;
