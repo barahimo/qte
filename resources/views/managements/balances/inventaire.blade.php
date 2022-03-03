@@ -123,12 +123,12 @@
                   </tr>
                   <tr>
                     <th class="text-right" colspan="4"></th>
-                    <th class="text-right" colspan="2">Recettes :</th>
+                    <th class="text-right" colspan="2">Dépenses :</th>
                     <th class="text-left">{{number_format($total_entree,2, '.', '')}} DH</th>
                   </tr>
                   <tr>
                     <th class="text-right" colspan="4"></th>
-                    <th class="text-right" colspan="2">Dépenses :</th>
+                    <th class="text-right" colspan="2">Recettes :</th>
                     <th class="text-left">{{number_format($total_sortie,2, '.', '')}} DH</th>
                   </tr>
                 </tfoot>
@@ -334,12 +334,12 @@
           </tr>
           <tr>
               <th class="text-right" colspan="4"></th>
-              <th class="text-right" colspan="2">Recettes :</th>
+              <th class="text-right" colspan="2">Dépenses :</th>
               <th class="text-left">${total_entree} DH</th>
           </tr>
           <tr>
               <th class="text-right" colspan="4"></th>
-              <th class="text-right" colspan="2">Dépenses :</th>
+              <th class="text-right" colspan="2">Recettes :</th>
               <th class="text-left">${total_sortie} DH</th>
           </tr>`
           table.find('tfoot').append(foot);
@@ -461,11 +461,11 @@
                         <th class="text-left">${quantite_sortie}</th>
                     </tr>
                     <tr>
-                        <th class="text-right" colspan="6">Recettes :</th>
+                        <th class="text-right" colspan="6">Dépenses :</th>
                         <th class="text-left">${total_entree} DH</th>
                     </tr>
                     <tr>
-                        <th class="text-right" colspan="6">Dépenses :</th>
+                        <th class="text-right" colspan="6">Recettes :</th>
                         <th class="text-left">${total_sortie} DH</th>
                     </tr>`
           table.find('tfoot').append(foot);

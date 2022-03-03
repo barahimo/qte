@@ -12,7 +12,7 @@ class Fournisseur extends Model
 {
     // use SoftDeletes;
 
-    protected $fillable = ["adresse","telephone","ICE","solde"];
+    protected $fillable = ["code",  "nom_fournisseur",  "adresse", "code_postal",  "ville",  "pays",  "tel",  "site",  "email",  "note", "iff",  "ice",  "capital",  "rc",  "patente",  "cnss",  "banque",  "rib"];
 
     // public function commande() 
     // {

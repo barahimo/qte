@@ -85,7 +85,7 @@
         </div>
       </div>
       <div class="col-4">
-        <input type="text" class="form-control" name="search" id="search" placeholder="search ..">
+        <input type="text" class="form-control" name="search" id="search" placeholder="chercher ..">
       </div>
     </div>
 </div>

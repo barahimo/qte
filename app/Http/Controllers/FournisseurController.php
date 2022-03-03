@@ -163,19 +163,33 @@ class FournisseurController extends Controller
         if(Auth::user()->is_admin == 0)
             $user_id = Auth::user()->user_id;
         // --------------------------------------------------
-        // $fournisseurs = Fournisseur::withTrashed()->where('user_id',$user_id)->get();
-        $fournisseurs = Fournisseur::where('user_id',$user_id)->get();
-        (count($fournisseurs)>0) ? $lastcode = $fournisseurs->last()->code : $lastcode = null;
-        $str = 1;
-        // if(isset($lastcode))
-        //     $str = $lastcode+1 ;
-        // $code = 'F-'.str_pad($str,4,"0",STR_PAD_LEFT);
-        if(isset($lastcode)){
-            // ----- F-0001 ----- //
-            $list = explode("-",$lastcode);
-            $n = $list[1];
-            $str = $n+1;
-        } 
+        // // $fournisseurs = Fournisseur::withTrashed()->where('user_id',$user_id)->get();
+        // $fournisseurs = Fournisseur::where('user_id',$user_id)->get();
+        // (count($fournisseurs)>0) ? $lastcode = $fournisseurs->last()->code : $lastcode = null;
+        // $str = 1;
+        // // if(isset($lastcode))
+        // //     $str = $lastcode+1 ;
+        // // $code = 'F-'.str_pad($str,4,"0",STR_PAD_LEFT);
+        // if(isset($lastcode)){
+        //     // ----- F-0001 ----- //
+        //     $list = explode("-",$lastcode);
+        //     $n = $list[1];
+        //     $str = $n+1;
+        // } 
+        // $pad = str_pad($str,4,"0",STR_PAD_LEFT);
+        // $code = 'F-'.$pad;
+        $fournisseurs = Fournisseur::select('code')->where('user_id',$user_id)->get();
+        $max = 0;
+        if(count($fournisseurs) > 0){
+            $list = [];
+            foreach ($fournisseurs as $key => $fournisseur) {
+                $tab = explode("-",$fournisseur->code);
+                $n = $tab[1];
+                array_push($list,floatval($n));
+            }
+            $max =  max($list);
+        }
+        $str = $max + 1;
         $pad = str_pad($str,4,"0",STR_PAD_LEFT);
         $code = 'F-'.$pad;
         // --------------------------------------------------

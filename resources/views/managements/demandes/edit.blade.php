@@ -61,7 +61,7 @@
         <div class="form-row">
           <div class="col-6">
             <select class="form-control" id="category">
-              <option value="0" disabled="true" selected="true">-Select-</option>
+              <option value="0" disabled="true" selected="true">-Catégories-</option>
               @foreach($categories as $cat)
                 <option value="{{$cat->id}}">{{$cat->nom_categorie}}</option>
               @endforeach
@@ -69,7 +69,7 @@
           </div>
           <div class="col-6">
             <select class="form-control" id="product">
-              <option value="0" disabled="true" selected="true">-Product-</option>
+              <option value="0" disabled="true" selected="true">-Produits-</option>
             </select>
           </div>
         </div>
@@ -106,10 +106,9 @@
           </div>
         </div>
         <br>
-        <button class='btn btn-success' id="test" onclick="onTest()">&nbsp;TEST&nbsp;</button>
-        <button class='btn btn-success' id="addLigne"><i class="fas fa-plus-circle"></i>&nbsp;Ligne&nbsp;<i class="fas fa-arrow-down"></i></button>
+        <button class='btn btn-success' id="addLigne"><i class="fas fa-plus-circle"></i>&nbsp;Ajouter&nbsp;<i class="fas fa-arrow-down"></i></button>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <button class='btn btn-warning text-white' id="updateLigne"><i class="fas fa-retweet"></i>&nbsp;à jour&nbsp;<i class="fas fa-arrow-down"></i></button>
+        <button class='btn btn-warning text-white' id="updateLigne"><i class="fas fa-retweet"></i>&nbsp;Modifier&nbsp;<i class="fas fa-arrow-down"></i></button>
       </div>
     </div>
   </div>
@@ -230,7 +229,7 @@
         url:'{!!Route('demande.productsCategoryDemande')!!}',
         data:{'id':cat_id},
         success:function(data){
-          var options = '<option value="0" disabled="true" selected="true">-Product-</option>';
+          var options = '<option value="0" disabled="true" selected="true">-Produits-</option>';
           if(data.length>0){
             for(var i=0;i<data.length;i++){
               options+=`<option value="${data[i].id}">${data[i].code_produit} | ${data[i].nom_produit.substring(0, 15)}... | ${parseFloat(data[i].prix_TTC).toFixed(2)} | ${parseFloat(data[i].quantite)}</option>`;
@@ -595,15 +594,6 @@
     });
     // -----------End valider--------------//
   });
-  function onTest(){
-    console.log(listItemsDeleted.length)
-    if(listItemsDeleted.length>0){
-      listItemsDeleted.forEach(item => {
-        console.log(item);
-      })
-    }
-    // console.log(listItemsDeleted);
-  }
   // -----------My function--------------//
   var listItemsDeleted = [];
   function remove(id){

@@ -52,12 +52,12 @@
       </tr>
       <tr>
         <th class="text-right" colspan="4"></th>
-        <th class="text-right" colspan="2">Recettes :</th>
+        <th class="text-right" colspan="2">Dépenses :</th>
         <th class="text-left">{{number_format($total_entree,2, '.', '')}} DH</th>
       </tr>
       <tr>
         <th class="text-right" colspan="4"></th>
-        <th class="text-right" colspan="2">Dépenses :</th>
+        <th class="text-right" colspan="2">Recettes :</th>
         <th class="text-left">{{number_format($total_sortie,2, '.', '')}} DH</th>
       </tr>
     </tfoot>

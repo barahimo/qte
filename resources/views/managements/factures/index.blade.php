@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-xl-6 col-lg-6 col-md-8 col-sm-8">
                         <div class="input-group">
-                            <input name="q" class="form-control" placeholder="search..." type="text">
+                            <input name="q" class="form-control" placeholder="chercher..." type="text">
                             <span class="input-group-btn">
                                 <button type="submit" name="search" id="search-btn" class="btn btn-info btn-flat"><i class="fa fa-search"></i> </button>
                             </span>

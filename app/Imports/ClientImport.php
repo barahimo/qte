@@ -58,36 +58,38 @@ class ClientImport implements ToCollection
                     $existe = true;
             }
             if($existe){
-                abort(404, "Erreur un code de client se répète plusieurs fois !");
+                abort(404, "Erreur  ! un code de client se répète plusieurs fois !");
             }
-            foreach ($collection as $index => $row) {
-                if($index >= 1) {
-                    $code = $row[0];
-                    /*/ ************************ /*/
-                    if (!in_array($code, $array)) {
-                            DB::table('clients')->insert([
-                                'code' => $code,
+            else{
+                foreach ($collection as $index => $row) {
+                    if($index >= 1) {
+                        $code = $row[0];
+                        /*/ ************************ /*/
+                        if (!in_array($code, $array)) {
+                                DB::table('clients')->insert([
+                                    'code' => $code,
+                                    'nom_client' => $row[1],
+                                    'adresse' => $row[2],
+                                    'telephone' => $row[3],
+                                    'ICE' => Str::slug($row[1], '-'),
+                                    'solde' => $row[4],
+                                    'user_id' => $user_id,
+                                    'created_at' => $mytime,
+                                    'updated_at' => $mytime,
+                                ]);
+                            }
+                        else {
+                            DB::table('clients')
+                            ->where('code',$code)
+                            ->update([
                                 'nom_client' => $row[1],
                                 'adresse' => $row[2],
                                 'telephone' => $row[3],
                                 'ICE' => Str::slug($row[1], '-'),
                                 'solde' => $row[4],
-                                'user_id' => $user_id,
-                                'created_at' => $mytime,
                                 'updated_at' => $mytime,
                             ]);
                         }
-                    else {
-                        DB::table('clients')
-                        ->where('code',$code)
-                        ->update([
-                            'nom_client' => $row[1],
-                            'adresse' => $row[2],
-                            'telephone' => $row[3],
-                            'ICE' => Str::slug($row[1], '-'),
-                            'solde' => $row[4],
-                            'updated_at' => $mytime,
-                        ]);
                     }
                 }
             }

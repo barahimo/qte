@@ -226,6 +226,14 @@
                                     </div>
                                 </div>
                                 @endif
+                                {{-- Begin - Import|Export --}}
+                                <div class="form-group has-feedback">
+                                    <label class="control-label" for="permission9_2" id="permission9_2" onclick="check9_2()"><u>Import | Export</u>&nbsp;:&nbsp;</label>
+                                    <div class="checkbox">
+                                        <label><input name="permission97_2" id="permission97_2" value="import9_2" type="checkbox" @if (in_array('import9_2',$permission)) checked="checked" @endif>&nbsp;Import des fichiers</label>
+                                        <label><input name="permission98_2" id="permission98_2" value="export9_2" type="checkbox" @if (in_array('export9_2',$permission)) checked="checked" @endif>&nbsp;Export des fichiers</label>
+                                    </div>
+                                </div>
                                 {{-- Begin - Paramètres --}}
                                 <div class="form-group has-feedback">
                                     <label class="control-label" for="permission9" id="permission9" onclick="check9()"><u>Paramètres</u>&nbsp;:&nbsp;</label>
@@ -519,6 +527,19 @@
             $('#permission90').prop('checked',true);
             $('#permission92').prop('checked',true);
             $('#permission93').prop('checked',true);
+        }
+    }
+    function check9_2(){
+        if(
+            $('#permission97_2').prop('checked') == true &&
+            $('#permission98_2').prop('checked') == true 
+        ){
+            $('#permission97_2').prop('checked',false);
+            $('#permission98_2').prop('checked',false);
+        }
+        else{
+            $('#permission97_2').prop('checked',true);
+            $('#permission98_2').prop('checked',true);
         }
     }
     $(document).on('click','button[name=changePasse]',function(e){

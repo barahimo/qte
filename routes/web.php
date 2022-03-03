@@ -248,11 +248,12 @@ Route::get('/import',function(){
 | Route File
 |--------------------------------------------------------------------------
 */
-/*/ ***************** /*/
-Route::get('files/studentExcel', 'FileController@studentExcel')->name('files.studentExcel');
-Route::post('files/studentImport', 'FileController@studentImport')->name('files.studentImport');
-Route::get('files/studentExport', 'FileController@studentExport')->name('files.studentExport');
+Route::get('files/excel', 'FileController@excel')->name('files.excel');
 /*/ ***************** /*/
 Route::get('files/clientExcel', 'FileController@clientExcel')->name('files.clientExcel');
 Route::post('files/clientImport', 'FileController@clientImport')->name('files.clientImport');
 Route::get('files/clientExport', 'FileController@clientExport')->name('files.clientExport');
+/*/ ***************** /*/
+Route::get('files/fournisseurExcel', 'FileController@fournisseurExcel')->name('files.fournisseurExcel');
+Route::post('files/fournisseurImport', 'FileController@fournisseurImport')->name('files.fournisseurImport');
+Route::get('files/fournisseurExport', 'FileController@fournisseurExport')->name('files.fournisseurExport');

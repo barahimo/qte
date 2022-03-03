@@ -23,7 +23,6 @@
 
 <!-- font-awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-{{-- <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css')}}" /> --}}
 
 <!-- v4.0.0 -->
 <link rel="stylesheet" href="{{ asset('dist/bootstrap/css/bootstrap.min.css')}}">
@@ -125,8 +124,11 @@
               <li><a href="{{ route('user.index') }}"><i class="icon-people"></i> Gestion des comptes</a></li>
               @endif
               @endif
-              @if(hasPermssion('create9') == 'yes' || hasPermssion('edit9') == 'true') 
+              @if(hasPermssion('create9') == 'yes' || hasPermssion('edit9') == 'yes') 
               <li><a href="{{ route('company.index') }}"><i class="icon-gears"></i> Paramètres</a></li>
+              @endif
+              @if(hasPermssion('import9_2') == 'yes' || hasPermssion('export9_2') == 'yes') 
+              <li><a href="{{ route('files.excel') }}"><i class="fa fa-cloud-download"></i> Import / Export</a></li>
               @endif
 
               <li role="separator" class="divider"></li>

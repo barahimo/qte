@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Throwable;
 use App\Client;
 use App\Commande;
+use App\Student;
 use App\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -124,18 +125,32 @@ class ClientController extends Controller
             $user_id = Auth::user()->user_id;
         // --------------------------------------------------
         // $clients = Client::withTrashed()->where('user_id',$user_id)->get();
-        $clients = Client::where('user_id',$user_id)->get();
-        (count($clients)>0) ? $lastcode = $clients->last()->code : $lastcode = null;
-        $str = 1;
-        // if(isset($lastcode))
-        //     $str = $lastcode+1 ;
-        // $code = 'C-'.str_pad($str,4,"0",STR_PAD_LEFT);
-        if(isset($lastcode)){
-            // ----- C-0001 ----- //
-            $list = explode("-",$lastcode);
-            $n = $list[1];
-            $str = $n+1;
-        } 
+        // $clients = Client::where('user_id',$user_id)->get();
+        // (count($clients)>0) ? $lastcode = $clients->last()->code : $lastcode = null;
+        // $str = 1;
+        // // if(isset($lastcode))
+        // //     $str = $lastcode+1 ;
+        // // $code = 'C-'.str_pad($str,4,"0",STR_PAD_LEFT);
+        // if(isset($lastcode)){
+        //     // ----- C-0001 ----- //
+        //     $list = explode("-",$lastcode);
+        //     $n = $list[1];
+        //     $str = $n+1;
+        // } 
+        // $pad = str_pad($str,4,"0",STR_PAD_LEFT);
+        // $code = 'C-'.$pad;
+        $clients = Client::select('code')->where('user_id',$user_id)->get();
+        $max = 0;
+        if(count($clients) > 0){
+            $list = [];
+            foreach ($clients as $key => $client) {
+                $tab = explode("-",$client->code);
+                $n = $tab[1];
+                array_push($list,floatval($n));
+            }
+            $max =  max($list);
+        }
+        $str = $max + 1;
         $pad = str_pad($str,4,"0",STR_PAD_LEFT);
         $code = 'C-'.$pad;
         // --------------------------------------------------

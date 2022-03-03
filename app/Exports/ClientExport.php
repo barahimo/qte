@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class clientExport implements FromCollection, WithHeadings
+class ClientExport implements FromCollection, WithHeadings
 {
     /**
      * @return \Illuminate\Support\Collection

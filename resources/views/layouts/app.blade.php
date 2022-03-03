@@ -11,6 +11,9 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <!-- v4.0.0-alpha.6 -->
     <link rel="stylesheet" href="{{ asset('dist/bootstrap/css/bootstrap.min.css')}}">
 
@@ -124,6 +127,11 @@
                             @if(hasPermssion('create9') == 'yes' || hasPermssion('edit9') == 'yes')
                             <li class="nav-item links">
                                 <a class="nav-link" href="{{ route('company.index') }}"><i class="icon-gears"></i> Paramètres</a>
+                            </li>
+                            @endif
+                            @if(hasPermssion('import9_2') == 'yes' || hasPermssion('export_2') == 'yes')
+                            <li class="nav-item links">
+                                <a class="nav-link" href="{{ route('files.excel') }}"><i class="fa fa-cloud-download"></i> Import / Export</a>
                             </li>
                             @endif
 

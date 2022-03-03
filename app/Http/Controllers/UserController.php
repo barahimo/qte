@@ -146,6 +146,9 @@ class UserController extends Controller
         $permission92 = $request['permission92'];
         $permission93 = $request['permission93'];
 
+        $permission97_2 = $request['permission97_2'];
+        $permission98_2 = $request['permission98_2'];
+
         $array = [];
         if($permission10) array_push($array,$permission10);
         if($permission11) array_push($array,$permission11);
@@ -227,6 +230,10 @@ class UserController extends Controller
         if($permission90) array_push($array,$permission90);
         if($permission92) array_push($array,$permission92);
         if($permission93) array_push($array,$permission93);
+
+        if($permission97_2) array_push($array,$permission97_2);
+        if($permission98_2) array_push($array,$permission98_2);
+
         $permission = "[";
         foreach ($array as $key => $value) {
             $permission.="'".$value."'"; 

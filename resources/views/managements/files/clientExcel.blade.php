@@ -1,5 +1,8 @@
 @extends('layout.dashboard')
 @section('contenu')
+<?php
+    use function App\Providers\hasPermssion;
+?>
 <div class="content-header sty-one">
 <h1>Import / Export Clients</h1>
 <ol class="breadcrumb">
@@ -29,8 +32,12 @@
                             <label class="custom-file-label" for="customFile">Choisissez Fichier</label>
                         </div>
                     </div>
+                    @if(hasPermssion('import9_2') == 'yes') 
                     <button type="submit" class="btn btn-primary" onclick="importdata()">Importer fichier</button>
+                    @endif
+                    @if(hasPermssion('export9_2') == 'yes') 
                     <a class="btn btn-success" href="{{ route('files.clientExport') }}"  onclick="exportdata()">Exporter fichier</a>
+                    @endif
                 </form>
                 <script>
                     function importdata(){
@@ -40,7 +47,7 @@
                     function exportdata(){
                         $('#loading').prop('style','display : block');
                         setTimeout(() => {
-                            // window.location.assign("{{route('files.studentExcel')}}")
+                            // window.location.assign("{{route('files.clientExcel')}}")
                             $('#loading').prop('style','display : none');
                         }, 2000);
                     }
